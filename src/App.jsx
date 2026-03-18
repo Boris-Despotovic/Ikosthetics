@@ -3,7 +3,7 @@ import './App.css'
 import { Container } from 'react-bootstrap'
 import Izbornik from './components/Izbornik'
 import { Route, Routes } from 'react-router-dom'
-import { RouteNames } from './constants'
+import { IME_APLIKACIJE, RouteNames } from './constants'
 import Home from './pages/Home'
 import KorisnikPregled from './pages/korisnici/KorisnikPregled'
 
@@ -16,6 +16,9 @@ function App() {
         <Route path={RouteNames.HOME} element={<Home />} />
         <Route path={RouteNames.KORISNICI} element={<KorisnikPregled />} />
       </Routes>
+
+      <hr />
+      &copy; {IME_APLIKACIJE}
     </Container>
     </>
   )
