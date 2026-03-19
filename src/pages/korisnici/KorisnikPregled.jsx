@@ -1,29 +1,46 @@
 import { useEffect } from "react"
 import { useState } from "react"
 import KorisnikService from "../../services/korisnici/KorisnikService"
+import { Table } from "react-bootstrap"
 
-export default function KorisniciPregled(){
+export default function KorisniciPregled() {
 
     const [korisnici, setKorisnici] = useState([])
 
-    useEffect(()=>{
+    useEffect(() => {
         ucitajKorisnike()
-    },[])
+    }, [])
 
-    async function ucitajKorisnike(){
-        await KorisnikService.get().then((odgovor)=>{
+    async function ucitajKorisnike() {
+        await KorisnikService.get().then((odgovor) => {
             setKorisnici(odgovor.data)
         })
     }
 
-    return(
+    return (
         <>
-        <ol>
-            {korisnici && korisnici.map((korisnik)=>(
-                <li>{korisnik.ime}</li>
-            ))}
-        </ol>
+            <Table>
+                <thead>
+                    <tr>
+                        <th>Ime</th>
+                        <th>Prezime</th>
+                        <th>Naziv plana treninga</th>
+                        <th>Trajanje</th>
+                        <th>Akcija</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {korisnici && korisnici.map((korisnik) => (
+                        <tr>
+                            <td>{korisnik.ime}</td>
+                            <td className='text-end'>{korisnik.prezime} </td>
+                            <td className='text-end'>{korisnik.nazivPlanaTreninga} </td>
+                            <td className='text-end'>{korisnik.trajanje} </td>
+                            <td></td>
+                        </tr>
+                    ))}
+                </tbody>
+            </Table>
         </>
     )
-
 }
