@@ -22,7 +22,6 @@ const navigate = useNavigate()
             prezime: podaci.get('prezime'),
             trajanje: parseInt(podaci.get('trajanje')),
             cijena: parseFloat(podaci.get('cijena')),
-            datumPokretanja: new Date(podaci.get('datumPokretanja')).toISOString(),
             aktivan: podaci.get('aktivan') === 'on'
         })
     }
@@ -41,14 +40,14 @@ const navigate = useNavigate()
                     <Form.Control type="text" name="prezime" required />
                 </Form.Group>
 
-                <Form.Group controlId="trajanje">
+                <Form.Group controlId="nazivPlanaTreninga">
                     <Form.Label>Naziv plana treninga</Form.Label>
-                    <Form.Control type="text" name="trajanje" step={1} />
+                    <Form.Control type="text" name="nazivPlanaTreninga" />
                 </Form.Group>
 
-                <Form.Group controlId="cijena">
+                <Form.Group controlId="trajanje">
                     <Form.Label>Trajanje</Form.Label>
-                    <Form.Control type="number" name="cijena" step={0.01} />
+                    <Form.Control type="number" name="trajanje" step={0.01} />
                 </Form.Group>
 
                 <Form.Group controlId="aktivan">
