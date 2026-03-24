@@ -2,6 +2,8 @@ import { useEffect } from "react"
 import { useState } from "react"
 import KorisnikService from "../../services/korisnici/KorisnikService"
 import { Table } from "react-bootstrap"
+import { RouteNames } from "../../constants"
+import { Link } from "react-router-dom"
 
 export default function KorisniciPregled() {
 
@@ -19,6 +21,10 @@ export default function KorisniciPregled() {
 
     return (
         <>
+        <Link to={RouteNames.KORISNICI_NOVI}
+        className="btn btn-success w-100 my-3">
+            Dodavanje novog korisnika
+        </Link>
             <Table>
                 <thead>
                     <tr>

@@ -6,8 +6,10 @@ import { Route, Routes } from 'react-router-dom'
 import { IME_APLIKACIJE, RouteNames } from './constants'
 import Home from './pages/Home'
 import KorisnikPregled from './pages/korisnici/KorisnikPregled'
+import KorisnikNovi from './pages/korisnici/KorisnikNovi'
 
 function App() {
+
   return (
     <>
     <Container>
@@ -15,6 +17,7 @@ function App() {
       <Routes>
         <Route path={RouteNames.HOME} element={<Home />} />
         <Route path={RouteNames.KORISNICI} element={<KorisnikPregled />} />
+        <Route path={RouteNames.KORISNICI_NOVI} element={<KorisnikNovi />} />
       </Routes>
 
       <hr />
