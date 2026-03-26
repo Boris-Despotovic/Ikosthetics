@@ -1,3 +1,37 @@
 .desno{
     text-align: right;
 }
+
+.socials {
+  position: fixed;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.socials a {
+  width: 45px;
+  height: 45px;
+  background: #222;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: 0.3s;
+  animation: float 3s infinite;
+}
+
+.socials a:hover {
+  transform: scale(1.2);
+  background: #ff3c3c;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}

@@ -8,6 +8,7 @@ import KorisnikPregled from './pages/korisnici/KorisnikPregled'
 import KorisnikNovi from './pages/korisnici/KorisnikNovi'
 import KorisnikPromjena from './pages/korisnici/KorisniciPromjena'
 import Home from './pages/Home'
+import SocialBar from './components/Socials'
 
 function App() {
 
@@ -21,6 +22,9 @@ function App() {
         <Route path={RouteNames.KORISNICI_NOVI} element={<KorisnikNovi />} />
         <Route path={RouteNames.KORISNICI_PROMJENA} element={<KorisnikPromjena />} />
       </Routes>
+      <>
+      <SocialBar />
+    </>
 
       <hr />
       &copy; {IME_APLIKACIJE}
