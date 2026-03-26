@@ -5,7 +5,10 @@ export default function Home(){
 
     return(
         <>
-        Dobrodošli na {IME_APLIKACIJE}
+        <h1>Dobrodošli na {IME_APLIKACIJE} </h1>
+        <div>
+            kasnije dolazi slika
+        </div>
         </>
     )
 

@@ -1,7 +1,11 @@
-import { korisnici } from "./KorisnikPodaci"
+import { korisnici } from "./KorisnikPodaci";
 
 async function get(){
-    return {data: korisnici}
+    return {data: [...korisnici]} // [...] stvara novi niz s istim podacima
+}
+
+async function getBySifra(sifra) {
+    return {data: smjerovi.find(s => s.sifra === parseInt(sifra))}
 }
 
 async function dodaj(korisnik) {
@@ -14,8 +18,18 @@ async function dodaj(korisnik) {
     korisnici.push(korisnik)
 }
 
+async function promjeni(sifra,korisnik) {
+    const index = nadiIndex(sifra)
+    korisnici[index] = {...korisnici[index], ...korisnik}
+}
+
+function nadiIndex(sifra){
+    return korisnici.findIndex(s=>s.sifra === parseInt(sifra))
+}
 
 export default{
     get,
-    dodaj
+    dodaj,
+    getBySifra,
+    promjeni
 }

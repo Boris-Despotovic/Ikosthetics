@@ -4,9 +4,10 @@ import { Container } from 'react-bootstrap'
 import Izbornik from './components/Izbornik'
 import { Route, Routes } from 'react-router-dom'
 import { IME_APLIKACIJE, RouteNames } from './constants'
-import Home from './pages/Home'
+import Home from './pages/Home
 import KorisnikPregled from './pages/korisnici/KorisnikPregled'
 import KorisnikNovi from './pages/korisnici/KorisnikNovi'
+import KorisnikPromjena from './pages/korisnici/KorisniciPromjena'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path={RouteNames.HOME} element={<Home />} />
         <Route path={RouteNames.KORISNICI} element={<KorisnikPregled />} />
         <Route path={RouteNames.KORISNICI_NOVI} element={<KorisnikNovi />} />
+        <Route path={RouteNames.KORISNICI_PROMJENA} element={<KorisnikPromjena />} />
       </Routes>
 
       <hr />

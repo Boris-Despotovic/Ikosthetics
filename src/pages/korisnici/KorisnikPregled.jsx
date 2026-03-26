@@ -25,7 +25,7 @@ export default function KorisniciPregled() {
         className="btn btn-success w-100 my-3">
             Dodavanje novog korisnika
         </Link>
-            <Table>
+            <Table striped hover responsive>
                 <thead>
                     <tr>
                         <th>Ime</th>
@@ -42,7 +42,11 @@ export default function KorisniciPregled() {
                             <td className='text-end'>{korisnik.prezime} </td>
                             <td className='text-end'>{korisnik.nazivPlanaTreninga} </td>
                             <td className='text-end'>{korisnik.trajanje} </td>
-                            <td></td>
+                            <td>
+                                <Button onClick={()=>{navigate(`/korisnici/${smjer.sifra}`)}}>
+                                Promjeni
+                            </Button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
