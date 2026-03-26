@@ -41,8 +41,8 @@ export default function KorisniciPregled() {
                     {korisnici && korisnici.map((korisnik) => (
                         <tr key={korisnik.sifra}>
                             <td>{korisnik.ime}</td>
-                            <td className='text-end'>{korisnik.prezime} </td>
-                            <td className='text-end'>{korisnik.nazivPlanaTreninga} </td>
+                            <td>{korisnik.prezime} </td>
+                            <td>{korisnik.nazivPlanaTreninga} </td>
                             <td className='text-end'>{korisnik.trajanje} </td>
                             <td>
                                 <Button onClick={()=>{navigate(`/korisnici/${korisnik.sifra}`)}}>

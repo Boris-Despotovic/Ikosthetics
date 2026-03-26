@@ -9,7 +9,6 @@ export default function KorisnikPromjena(){
     const navigate = useNavigate()
     const params = useParams() 
     const [korisnik, setKorisnik] = useState({})
-    const [aktivan, setAktivan] = useState(false)
 
     useEffect(()=>{
         ucitajKorisnik()
@@ -18,9 +17,8 @@ export default function KorisnikPromjena(){
     async function ucitajKorisnik() {
         await KorisnikService.getBySifra(params.sifra).then((odgovor)=>{
             const s = odgovor.data
-            s.datumPokretanja = s.datumPokretanja.substring(0,10)
+            
             setKorisnik(s)
-            setAktivan(s.aktivan)
             //console.table(odgovor.data)
         })
     }
@@ -38,8 +36,7 @@ export default function KorisnikPromjena(){
             ime: podaci.get('ime'),
             prezime: podaci.get('prezime'),
             nazivPlanaTreninga: podaci.get('naziv plana treninga'),
-            trajanje: parseInt(podaci.get('trajanje')),
-            aktivan: aktivan
+            trajanje: parseInt(podaci.get('trajanje'))
         })
     }
 
@@ -71,11 +68,6 @@ export default function KorisnikPromjena(){
                     defaultValue={korisnik.trajanje}/>
                 </Form.Group>
 
-                <Form.Group controlId="aktivan">
-                    <Form.Check label="Aktivan" name="aktivan" 
-                    checked={aktivan}
-                    onChange={(e)=>{setAktivan(e.target.checked)}}/>
-                </Form.Group>
 
                 <Row className="mt-4">
                     <Col>
