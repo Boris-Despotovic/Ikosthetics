@@ -5,7 +5,7 @@ async function get(){
 }
 
 async function getBySifra(sifra) {
-    return {data: smjerovi.find(s => s.sifra === parseInt(sifra))}
+    return {data: korisnici.find(s => s.sifra === parseInt(sifra))}
 }
 
 async function dodaj(korisnik) {

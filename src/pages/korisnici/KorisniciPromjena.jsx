@@ -60,8 +60,8 @@ export default function KorisnikPromjena(){
                 </Form.Group>
 
                 <Form.Group controlId="nazivPlanaTreninga">
-                    <Form.Label>Cijena</Form.Label>
-                    <Form.Control type="number" name="nazivPlanaTreninga" required 
+                    <Form.Label>Naziv plana treninga</Form.Label>
+                    <Form.Control type="text" name="nazivPlanaTreninga" required 
                     defaultValue={korisnik.nazivPlanaTreninga}/>
                 </Form.Group>
 
