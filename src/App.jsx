@@ -4,10 +4,10 @@ import { Container } from 'react-bootstrap'
 import Izbornik from './components/Izbornik'
 import { Route, Routes } from 'react-router-dom'
 import { IME_APLIKACIJE, RouteNames } from './constants'
-import Home from './pages/Home
 import KorisnikPregled from './pages/korisnici/KorisnikPregled'
 import KorisnikNovi from './pages/korisnici/KorisnikNovi'
 import KorisnikPromjena from './pages/korisnici/KorisniciPromjena'
+import Home from './pages/Home'
 
 function App() {
 
