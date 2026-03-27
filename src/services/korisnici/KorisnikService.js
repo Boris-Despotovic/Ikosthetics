@@ -10,7 +10,7 @@ async function getBySifra(sifra) {
 
 async function dodaj(korisnik) {
     if(korisnici.length===0){
-        korsinik.sifra=1
+        korisnik.sifra=1
     }else{
         korisnik.sifra = korisnici[korisnici.length - 1].sifra + 1
     }

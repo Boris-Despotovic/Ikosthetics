@@ -35,7 +35,7 @@ export default function KorisnikPromjena(){
         promjeni({
             ime: podaci.get('ime'),
             prezime: podaci.get('prezime'),
-            nazivPlanaTreninga: podaci.get('naziv plana treninga'),
+            nazivPlanaTreninga: podaci.get('nazivPlanaTreninga'),
             trajanje: parseInt(podaci.get('trajanje'))
         })
     }
