@@ -22,7 +22,7 @@ export default function KorisniciPregled() {
     }
 
     async function obrisi(sifra) {
-        if(confirm('Sigurno obrisati?')){
+        if(!confirm('Sigurno obrisati?')){
             return
         }
         await KorisnikService.obrisi(sifra)

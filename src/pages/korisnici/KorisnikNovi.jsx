@@ -21,7 +21,7 @@ const navigate = useNavigate()
             ime: podaci.get('ime'),
             prezime: podaci.get('prezime'),
             trajanje: parseInt(podaci.get('trajanje')),
-            cijena: parseFloat(podaci.get('cijena')),
+            nazivPlanaTreninga: podaci.get('nazivPlanaTreninga'),
             aktivan: podaci.get('aktivan') === 'on'
         })
     }
@@ -32,7 +32,7 @@ const navigate = useNavigate()
             <Form onSubmit={odradiSubmit}>
                 <Form.Group controlId="ime">
                     <Form.Label>Ime</Form.Label>
-                    <Form.Control type="text" name="naziv" required />
+                    <Form.Control type="text" name="ime" required />
                 </Form.Group>
 
                 <Form.Group controlId="prezime">
