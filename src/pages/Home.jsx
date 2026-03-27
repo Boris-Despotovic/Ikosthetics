@@ -5,9 +5,16 @@ export default function Home(){
 
     return(
         <>
-        <h1>Dobrodošli na {IME_APLIKACIJE} </h1>
+        <h1>Welcome to {IME_APLIKACIJE}</h1>
         <div>
-            kasnije dolazi slika
+            Join fitness programs by Boris Despotović, Ikosthetics.
+        </div>
+        <div>
+            Your body, your temple.
+        </div>
+        <div>
+            “No man has the right to be an amateur in the matter of physical training. It is a shame for a man to grow old without seeing the beauty and strength of which his body is capable.”
+― Socrates
         </div>
         </>
     )
