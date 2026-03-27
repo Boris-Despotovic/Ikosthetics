@@ -21,6 +21,14 @@ export default function KorisniciPregled() {
         })
     }
 
+    async function obrisi(sifra) {
+        if(confirm('Sigurno obrisati?')){
+            return
+        }
+        await KorisnikService.obrisi(sifra)
+        ucitajKorisnike()
+    }
+
     return (
         <>
         <Link to={RouteNames.KORISNICI_NOVI}
@@ -47,6 +55,10 @@ export default function KorisniciPregled() {
                             <td>
                                 <Button onClick={()=>{navigate(`/korisnici/${korisnik.sifra}`)}}>
                                 Promjeni
+                            </Button>
+                            &nbsp;&nbsp;
+                            <Button variant="danger" onClick={()=>{obrisi(korisnik.sifra)}}>
+                                Obriši
                             </Button>
                             </td>
                         </tr>
