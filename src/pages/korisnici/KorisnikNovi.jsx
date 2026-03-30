@@ -21,8 +21,7 @@ const navigate = useNavigate()
             ime: podaci.get('ime'),
             prezime: podaci.get('prezime'),
             trajanje: parseInt(podaci.get('trajanje')),
-            nazivPlanaTreninga: podaci.get('nazivPlanaTreninga'),
-            aktivan: podaci.get('aktivan') === 'on'
+            nazivPlanaTreninga: podaci.get('nazivPlanaTreninga')
         })
     }
 
@@ -48,10 +47,6 @@ const navigate = useNavigate()
                 <Form.Group controlId="trajanje">
                     <Form.Label>Trajanje</Form.Label>
                     <Form.Control type="number" name="trajanje" step={0.01} />
-                </Form.Group>
-
-                <Form.Group controlId="aktivan">
-                    <Form.Check label="Aktivan" name="aktivan" />
                 </Form.Group>
 
                 <Row className="mt-4">
