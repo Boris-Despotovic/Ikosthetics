@@ -1,41 +1,38 @@
-import { korisnici } from "./KorisnikPodaci";
+import { DATA_SOURCE } from "../../constants";
+import KorisnikServiceLocalStorage from "./KorisnikServiceLocalStorage";
+import KorisnikServiceMemorija from "./KorisnikServiceMemorija";
 
-async function get(){
-    return {data: [...korisnici]} // [...] stvara novi niz s istim podacima
+let Servis = null;
+
+
+switch (DATA_SOURCE) {
+    case 'memorija':
+        Servis = KorisnikServiceMemorija;
+        break;
+    case 'localStorage':
+        Servis = KorisnikServiceLocalStorage;
+        break;
+    default:
+        Servis = null;
 }
 
-async function getBySifra(sifra) {
-    return {data: korisnici.find(s => s.sifra === parseInt(sifra))}
-}
 
-async function dodaj(korisnik) {
-    if(korisnici.length===0){
-        korisnik.sifra=1
-    }else{
-        korisnik.sifra = korisnici[korisnici.length - 1].sifra + 1
-    }
+const PrazanServis = {
+    get: async () => ({ success: false, data: []}),
+    getBySifra: async (sifra) => ({ success: false, data: {} }),
+    dodaj: async (korisnik) => { console.error("Servis nije učitan"); },
+    promjeni: async (sifra, korisnik) => { console.error("Servis nije učitan"); },
+    obrisi: async (sifra) => { console.error("Servis nije učitan"); }
+};
 
-    korisnici.push(korisnik)
-}
+// 3. Jedan jedini export na kraju
+// Ako Servis postoji, koristi njega, inače koristi PrazanServis
+const AktivniServis = Servis || PrazanServis;
 
-async function promjeni(sifra,korisnik) {
-    const index = nadiIndex(sifra)
-    korisnici[index] = {...korisnici[index], ...korisnik}
-}
-
-function nadiIndex(sifra){
-    return korisnici.findIndex(s=>s.sifra === parseInt(sifra))
-}
-
-async function obrisi(sifra) {
-    const index = nadiIndex(sifra)
-    korisnici.splice(index,1)
-}
-
-export default{
-    get,
-    dodaj,
-    getBySifra,
-    promjeni,
-    obrisi
-}
+export default {
+    get: () => AktivniServis.get(),
+    getBySifra: (sifra) => AktivniServis.getBySifra(sifra),
+    dodaj: (korisnik) => AktivniServis.dodaj(korisnik),
+    promjeni: (sifra, korisnik) => AktivniServis.promjeni(sifra, korisnik),
+    obrisi: (sifra) => AktivniServis.obrisi(sifra)
+};
