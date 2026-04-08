@@ -19,7 +19,9 @@ export default function Home(){
                 console.error('Greška pri dohvaćanju podataka:', error);
             }
         };
-        
+       
+        fetchData();
+    }, []);
 
     return(
         <>
