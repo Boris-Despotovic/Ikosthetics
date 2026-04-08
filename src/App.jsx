@@ -18,9 +18,14 @@ function App() {
       <Izbornik />
       <Routes>
         <Route path={RouteNames.HOME} element={<Home />} />
+
         <Route path={RouteNames.KORISNICI} element={<KorisnikPregled />} />
         <Route path={RouteNames.KORISNICI_NOVI} element={<KorisnikNovi />} />
         <Route path={RouteNames.KORISNICI_PROMJENA} element={<KorisnikPromjena />} />
+
+        <Route path={RouteNames.VJEZBE} element={<VjezbePregled />} />
+        <Route path={RouteNames.VJEZBE_NOVI} element={<VjezbeNovi />} />
+        <Route path={RouteNames.VJEZBE_PROMJENA} element={<VjezbePromjena />} />
       </Routes>
       <>
       <SocialBar />

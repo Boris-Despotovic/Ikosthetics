@@ -22,6 +22,9 @@ export default function Izbornik() {
                             <NavDropdown.Item
                             onClick={()=>navigate(RouteNames.KORISNICI)}
                             >Korisnici</NavDropdown.Item>
+                            <NavDropdown.Item
+                            onClick={()=>navigate(RouteNames.VJEZBE)}
+                            >Vježbe</NavDropdown.Item>
                             
                         </NavDropdown>
                     </Nav>

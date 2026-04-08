@@ -2,7 +2,24 @@ import { IME_APLIKACIJE } from "../constants";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 export default function Home(){
+    const [brojKorisnika, setBrojKorisnika] = useState(0);
+    const [brojVjezba, setBrojVjezba] = useState(0);
+    const [animatedKorisnici, setAnimatedKorisnici] = useState(0);
+    const [animatedVjezbe, setAnimatedVjezbe] = useState(0);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const korisniciRezultat = await KorisnikService.get();
+                const Vjezbe = await VjezbeService.get();
+                
+                setBrojKorisnika(korisniciRezultat.data.length);
+                setBrojVjezba(Vjezbe.data.length);
+            } catch (error) {
+                console.error('Greška pri dohvaćanju podataka:', error);
+            }
+        };
+        
 
     return(
         <>

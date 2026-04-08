@@ -4,7 +4,11 @@ export const RouteNames = {
     HOME: '/',
     KORISNICI: '/korisnici',
     KORISNICI_NOVI: '/korisnici/novi',
-    KORISNICI_PROMJENA: '/korisnici/:sifra'
+    KORISNICI_PROMJENA: '/korisnici/:sifra',
+
+    VJEZBE: '/Vjezbe',
+    VJEZBE_NOVI: '/Vjezbe/novi',
+    VJEZBE_PROMJENA: '/Vjezbe/:sifra',
 }
 
 // memorija, localStorage, firebase
