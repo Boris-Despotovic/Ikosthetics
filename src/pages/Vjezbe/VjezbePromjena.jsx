@@ -8,7 +8,7 @@ export default function VjezbePromjena(){
 
     const navigate = useNavigate()
     const params = useParams()
-    const [Vjezba, setVjezba] = useState({})
+    const [vjezba, setVjezba] = useState({})
 
     useEffect(()=>{
         ucitajVjezbu()
@@ -47,7 +47,7 @@ export default function VjezbePromjena(){
         }
 
         // --- KONTROLA 3: Opis (Postojanje) ---
-        if (!podaci.get('opis') || podaci.get('opise').trim().length === 0) {
+        if (!podaci.get('opis') || podaci.get('opis').trim().length === 0) {
             alert("Opis je obavezno i ne smije sadržavati samo razmake!");
             return;
         }
@@ -71,13 +71,13 @@ export default function VjezbePromjena(){
                 <Form.Group controlId="ime">
                     <Form.Label>Ime</Form.Label>
                     <Form.Control type="text" name="ime" required 
-                    defaultValue={Vjezba.ime}/>
+                    defaultValue={vjezba.ime}/>
                 </Form.Group>
 
                 <Form.Group controlId="opis">
                     <Form.Label>Opis vježbe</Form.Label>
                     <Form.Control type="text" name="opis" required 
-                    defaultValue={Vjezba.opis}/>
+                    defaultValue={vjezba.opis}/>
                 </Form.Group>
 
                 <Row className="mt-4">

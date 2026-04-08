@@ -9,6 +9,9 @@ import KorisnikNovi from './pages/korisnici/KorisnikNovi'
 import KorisnikPromjena from './pages/korisnici/KorisniciPromjena'
 import Home from './pages/Home'
 import SocialBar from './components/Socials'
+import VjezbePregled from './pages/vjezbe/VjezbePregled'
+import VjezbeNovi from './pages/vjezbe/VjezbeNovi'
+import VjezbePromjena from './pages/vjezbe/VjezbePromjena'
 
 function App() {
 

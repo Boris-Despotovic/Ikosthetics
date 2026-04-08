@@ -106,7 +106,7 @@ export const Vjezbe = [
     },
     {
         sifra: 22,
-        ime: 'Triceps ekstenzija,
+        ime: 'Triceps ekstenzija',
         opis: 'Izolacijska vježba za triceps.',
     },
     {

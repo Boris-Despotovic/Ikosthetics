@@ -8,7 +8,7 @@ export default function VjezbePregled(){
 
     const navigate = useNavigate()
 
-    const [Vjezbe, setVjezbe] = useState([])
+    const [vjezbe, setVjezbe] = useState([])
 
     useEffect(()=>{
         ucitajVjezbe()
@@ -20,7 +20,7 @@ export default function VjezbePregled(){
                 alert('Nije implementiran servis')
                 return
             }
-            setVjzebe(odgovor.data)
+            setVjezbe(odgovor.data)
         })
     }
 
@@ -41,19 +41,20 @@ export default function VjezbePregled(){
                 <tr>
                     <th>Ime</th>
                     <th>Opis</th>
+                    <th>Akcija</th>
                 </tr>
             </thead>
             <tbody>
-                {Vjezbe && Vjezbe.map((Vjezba)=>(
-                    <tr key={Vjezba.sifra}>
-                        <td className="lead">{Vjezba.ime}</td>
-                        <td className="lead">{Vjezba.opis}</td>
+                {vjezbe && vjezbe.map((vjezba)=>(
+                    <tr key={vjezba.sifra}>
+                        <td className="lead">{vjezba.ime}</td>
+                        <td className="lead">{vjezba.opis}</td>
                         <td>
-                            <Button onClick={()=>{navigate(`/Vjezbe/${Vjezba.sifra}`)}}>
+                            <Button onClick={()=>{navigate(`/Vjezbe/${vjezba.sifra}`)}}>
                                 Promjeni
                             </Button>
                             &nbsp;&nbsp;
-                            <Button variant="danger" onClick={() => brisanje(Vjezba.sifra)}>
+                            <Button variant="danger" onClick={() => brisanje(vjezba.sifra)}>
                                 Obriši
                             </Button>
                         </td>
