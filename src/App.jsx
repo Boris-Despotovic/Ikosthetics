@@ -29,6 +29,11 @@ function App() {
         <Route path={RouteNames.VJEZBE} element={<VjezbePregled />} />
         <Route path={RouteNames.VJEZBE_NOVI} element={<VjezbeNovi />} />
         <Route path={RouteNames.VJEZBE_PROMJENA} element={<VjezbePromjena />} />
+
+        <Route path={RouteNames.PLANOVI_TRENINGA} element={<PlanoviTreninga />} />
+          <Route path={RouteNames.PLANOVI_TRENINGA_NOVI} element={<PlanoviTreningaNovi />} />
+          <Route path={RouteNames.PLANOVI_TRENINGA_PROMJENA} element={<PlanoviTreningaPromjena />} />
+
       </Routes>
       <>
       <SocialBar />

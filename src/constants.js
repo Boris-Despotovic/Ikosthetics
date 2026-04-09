@@ -9,7 +9,11 @@ export const RouteNames = {
     VJEZBE: '/Vjezbe',
     VJEZBE_NOVI: '/Vjezbe/novi',
     VJEZBE_PROMJENA: '/Vjezbe/:sifra',
+
+    PLANOVI_TRENINGA: '/planovi-treninga',
+    PLANOVI_TRENINGA_NOVI: '/planovi-treninga/novi',
+    PLANOVI_TRENINGA_PROMJENA: '/planovi-treninga/:sifra'
 }
 
 // memorija, localStorage, firebase
-export const DATA_SOURCE = 'localStorage';
+export const DATA_SOURCE = 'memorija';
