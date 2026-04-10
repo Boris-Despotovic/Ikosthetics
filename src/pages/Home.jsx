@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { IME_APLIKACIJE } from "../constants";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import KorisnikService from "../services/korisnici/KorisnikService";
+import VjezbeService from "../services/Vjezbe/VjezbeService";
 
 export default function Home(){
     const [brojKorisnika, setBrojKorisnika] = useState(0);

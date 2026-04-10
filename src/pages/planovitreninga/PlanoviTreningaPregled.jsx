@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import PlanoviTreningaService from "../../services/planovi treninga/PlanoviTreningaService"
+import PlanoviTreningaService from "../../services/planovitreninga/PlanoviTreningaService"
 import KorisnikService from "../../services/korisnici/KorisnikService"
 import { Button, Table } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
@@ -9,13 +9,24 @@ export default function PlanoviTreningaPregled(){
 
     const navigate = useNavigate()
 
-    const [planovitreninga, setPlanoviTreninga] = useState([])
+    const [planovitreninga, setPlanovitreninga] = useState([])
     const [korisnici, setKorisnici] = useState([])
 
     useEffect(()=>{
         ucitajPlanoviTreninga()
-        ucitajKorisnici()
+        ucitajKorisnike()
     },[])
+
+
+    async function ucitajKorisnike() {
+            await KorisnikService.get().then((odgovor) => {
+                if(!odgovor.success){
+                    alert('Nije implementiran servis')
+                    return
+                }
+                setKorisnici(odgovor.data)
+            })
+        }
 
     async function ucitajPlanoviTreninga() {
         await PlanoviTreningaService.get().then((odgovor)=>{
@@ -23,7 +34,7 @@ export default function PlanoviTreningaPregled(){
                 alert('Nije implementiran servis')
                 return
             }
-            setPlanoviTreninga(odgovor.data)
+            setPlanovitreninga(odgovor.data)
         })
     }
 
@@ -45,12 +56,12 @@ export default function PlanoviTreningaPregled(){
 
     function dohvatiNazivKorisnika(sifraKorisnika) {
         const korisnik = korisnici.find(s => s.sifra === sifraKorisnika)
-        return korisnik ? korisnik.naziv : 'Nepoznat korisnik'
+        return korisnik ? korisnik.ime + ' ' + korisnik.prezime : 'Nepoznat korisnik'
     }
 
     return(
         <>
-        <Link to={RouteNames.PLANOVITRENINGA_NOVI}
+        <Link to={RouteNames.PLANOVI_TRENINGA_NOVI}
         className="btn btn-success w-100 my-3">
             Dodavanje novog plana treninga
         </Link>
@@ -68,7 +79,7 @@ export default function PlanoviTreningaPregled(){
                         <td className="lead">{plantreninga.naziv}</td>
                         <td>{dohvatiNazivKorisnika(plantreninga.korisnik)}</td>
                         <td>
-                            <Button onClick={()=>{navigate(`/planovitreninga/${plantreninga.sifra}`)}}>
+                            <Button onClick={()=>{navigate(`/planovi-treninga/${plantreninga.sifra}`)}}>
                                 Promjeni
                             </Button>
                             &nbsp;&nbsp;

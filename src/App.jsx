@@ -16,9 +16,9 @@ import VjezbePregled from './pages/vjezbe/VjezbePregled'
 import VjezbeNovi from './pages/vjezbe/VjezbeNovi'
 import VjezbePromjena from './pages/vjezbe/VjezbePromjena'
 
-import PlanoviTreningaNovi from './pages/planovi treninga/PlanoviTreningaNovi'
-import PlanoviTreningaPromjena from './pages/planovi treninga/PlanoviTreningaPromjena'
-import PlanoviTreningaPregled from './pages/planovi treninga/PlanoviTreningaPregled'
+import PlanoviTreningaNovi from './pages/planovitreninga/PlanoviTreningaNovi'
+import PlanoviTreningaPromjena from './pages/planovitreninga/PlanoviTreningaPromjena'
+import PlanoviTreningaPregled from './pages/planovitreninga/PlanoviTreningaPregled'
 
 function App() {
 

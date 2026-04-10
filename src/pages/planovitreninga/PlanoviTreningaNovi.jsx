@@ -1,49 +1,36 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
-import PlanoviTreningaService from "../../services/planovi treninga/PlanoviTreningaService"
-import KorisnikService from "../../services/korisnici/KorisnikService"
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap"
 import { RouteNames } from "../../constants"
+import { Link, useNavigate } from "react-router-dom"
+import KorisnikService from "../../services/korisnici/KorisnikService"
+import PlanoviTreningaService from "../../services/planovitreninga/PlanoviTreningaService"
 
-export default function PlanoviTreningaPromjena(){
+export default function PlanoviTreningaNovi() {
 
     const navigate = useNavigate()
-    const params = useParams()
-    const [plantreninga, setPlantreninga] = useState({})
     const [korisnici, setKorisnici] = useState([])
 
-    useEffect(()=>{
-        ucitajPlanoveTreninga()
+    useEffect(() => {
         ucitajKorisnike()
-    },[])
-
-    async function ucitajPlanovetreninga() {
-        await PlanoviTreningaService.getBySifra(params.sifra).then((odgovor)=>{
-            if(!odgovor.success){
-                alert('Nije implementiran servis')
-                return
-            }
-            setPlanTreninga(odgovor.data)
-        })
-    }
+    }, [])
 
     async function ucitajKorisnike() {
         await KorisnikService.get().then((odgovor) => {
             if (!odgovor.success) {
-                alert('Nije implementiran servis za korisnike')
+                alert('Nije implementiran servis za smjerove')
                 return
             }
             setKorisnici(odgovor.data)
         })
     }
 
-    async function promjeni(plantreninga) {
-        await PlanoviTreningaService.promjeni(params.sifra,plantreninga).then(()=>{
-            navigate(RouteNames.PLANOVETRENINGA)
+    async function dodaj(plantreninga) {
+        await PlanoviTreningaService.dodaj(plantreninga).then(() => {
+            navigate(RouteNames.PLANOVITRENINGA)
         })
     }
 
-    function odradiSubmit(e){
+    function odradiSubmit(e) {
         e.preventDefault()
         const podaci = new FormData(e.target)
 
@@ -53,30 +40,30 @@ export default function PlanoviTreningaPromjena(){
         }
 
         if (podaci.get('naziv').trim().length < 3) {
-            alert("Naziv plana treninga mora imati najmanje 3 znaka!");
+            alert("Naziv grupe mora imati najmanje 3 znaka!");
             return;
         }
 
-        if (!podaci.get('korisnik') || podaci.get('korisnik') === "") {
-            alert("Morate odabrati korisnika!");
+        if (!podaci.get('smjer') || podaci.get('smjer') === "") {
+            alert("Morate odabrati smjer!");
             return;
         }
 
-        const odabraniKorisnika = parseInt(podaci.get('korisnik'));
+        const odabraniKorisnik = parseInt(podaci.get('korisnik'));
         if (isNaN(odabraniKorisnik) || odabraniKorisnik <= 0) {
             alert("Odabrani korisnik nije valjan!");
             return;
         }
 
-        promjeni({
+        dodaj({
             naziv: podaci.get('naziv'),
             korisnik: odabraniKorisnik
         })
     }
 
-    return(
-         <>
-            <h3>Promjena plana treninga</h3>
+    return (
+        <>
+            <h3>Unos novog plana treninga</h3>
             <Form onSubmit={odradiSubmit}>
                 <Container className="mt-4">
                     <Card className="shadow-sm">
@@ -93,7 +80,6 @@ export default function PlanoviTreningaPromjena(){
                                             name="naziv"
                                             placeholder="Unesite naziv plana treninga"
                                             required
-                                            defaultValue={plantreninga.naziv}
                                         />
                                     </Form.Group>
                                 </Col>
@@ -104,7 +90,7 @@ export default function PlanoviTreningaPromjena(){
                                 <Col xs={12}>
                                     <Form.Group controlId="korisnik" className="mb-3">
                                         <Form.Label className="fw-bold">Korisnik</Form.Label>
-                                        <Form.Select name="smjer" required value={plantreninga.korisnik || ''} onChange={(e) => setPlantreninga({...plantreninga, korisnik: parseInt(e.target.value)})}>
+                                        <Form.Select name="korisnik" required>
                                             <option value="">Odaberite korisnika</option>
                                             {korisnici && korisnici.map((korisnik) => (
                                                 <option key={korisnik.sifra} value={korisnik.sifra}>
@@ -124,7 +110,7 @@ export default function PlanoviTreningaPromjena(){
                                     Odustani
                                 </Link>
                                 <Button type="submit" variant="success">
-                                    Promjeni plan treninga
+                                    Dodaj novi plan treninga
                                 </Button>
                             </div>
                         </Card.Body>
