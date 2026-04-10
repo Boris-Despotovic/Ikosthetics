@@ -9,7 +9,7 @@ export default function PlanoviTreningaPromjena(){
 
     const navigate = useNavigate()
     const params = useParams()
-    const [plantreninga, setPlantreninga] = useState({})
+    const [planTreninga, setPlanTreninga] = useState({})
     const [korisnici, setKorisnici] = useState([])
 
     useEffect(()=>{
@@ -17,7 +17,7 @@ export default function PlanoviTreningaPromjena(){
         ucitajKorisnike()
     },[])
 
-    async function ucitajPlanovetreninga() {
+    async function ucitajPlanoveTreninga() {
         await PlanoviTreningaService.getBySifra(params.sifra).then((odgovor)=>{
             if(!odgovor.success){
                 alert('Nije implementiran servis')
@@ -39,7 +39,7 @@ export default function PlanoviTreningaPromjena(){
 
     async function promjeni(plantreninga) {
         await PlanoviTreningaService.promjeni(params.sifra,plantreninga).then(()=>{
-            navigate(RouteNames.PLANOVETRENINGA)
+            navigate(RouteNames.PLANOVI_TRENINGA)
         })
     }
 
@@ -62,7 +62,7 @@ export default function PlanoviTreningaPromjena(){
             return;
         }
 
-        const odabraniKorisnika = parseInt(podaci.get('korisnik'));
+        const odabraniKorisnik = parseInt(podaci.get('korisnik'));
         if (isNaN(odabraniKorisnik) || odabraniKorisnik <= 0) {
             alert("Odabrani korisnik nije valjan!");
             return;
@@ -93,7 +93,7 @@ export default function PlanoviTreningaPromjena(){
                                             name="naziv"
                                             placeholder="Unesite naziv plana treninga"
                                             required
-                                            defaultValue={plantreninga.naziv}
+                                            defaultValue={planTreninga.naziv}
                                         />
                                     </Form.Group>
                                 </Col>
@@ -104,11 +104,11 @@ export default function PlanoviTreningaPromjena(){
                                 <Col xs={12}>
                                     <Form.Group controlId="korisnik" className="mb-3">
                                         <Form.Label className="fw-bold">Korisnik</Form.Label>
-                                        <Form.Select name="smjer" required value={plantreninga.korisnik || ''} onChange={(e) => setPlantreninga({...plantreninga, korisnik: parseInt(e.target.value)})}>
+                                        <Form.Select name="korisnik" required value={planTreninga.korisnik || ''} onChange={(e) => setPlanTreninga({...planTreninga, korisnik: parseInt(e.target.value)})}>
                                             <option value="">Odaberite korisnika</option>
                                             {korisnici && korisnici.map((korisnik) => (
                                                 <option key={korisnik.sifra} value={korisnik.sifra}>
-                                                    {korisnik.naziv}
+                                                    {korisnik.ime + ' ' + korisnik.prezime}
                                                 </option>
                                             ))}
                                         </Form.Select>

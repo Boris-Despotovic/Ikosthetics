@@ -32,7 +32,7 @@ export default function Home(){
     }, []);
 
     useEffect(() => {
-        if (animatedKorisnici < brojkorisnika) {
+        if (animatedKorisnici < brojKorisnika) {
             const timer = setTimeout(() => {
                 setAnimatedKorisnici(prev => Math.min(prev + 1, brojKorisnika));
             }, 300);
@@ -47,7 +47,7 @@ export default function Home(){
             }, 100);
             return () => clearTimeout(timer);
         }
-    }, [animatedVjzebe, brojVjezba]);
+    }, [animatedVjezbe, brojVjezba]);
 
     useEffect(() => {
         if (animatedPlanovitreninga < brojPlanovatreninga) {

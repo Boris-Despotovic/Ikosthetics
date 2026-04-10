@@ -26,7 +26,7 @@ export default function PlanoviTreningaNovi() {
 
     async function dodaj(plantreninga) {
         await PlanoviTreningaService.dodaj(plantreninga).then(() => {
-            navigate(RouteNames.PLANOVITRENINGA)
+            navigate(RouteNames.PLANOVI_TRENINGA)
         })
     }
 
