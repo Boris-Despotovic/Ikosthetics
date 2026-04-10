@@ -17,7 +17,7 @@ export default function PlanoviTreningaNovi() {
     async function ucitajKorisnike() {
         await KorisnikService.get().then((odgovor) => {
             if (!odgovor.success) {
-                alert('Nije implementiran servis za smjerove')
+                alert('Nije implementiran servis za korisnike')
                 return
             }
             setKorisnici(odgovor.data)
@@ -40,12 +40,12 @@ export default function PlanoviTreningaNovi() {
         }
 
         if (podaci.get('naziv').trim().length < 3) {
-            alert("Naziv grupe mora imati najmanje 3 znaka!");
+            alert("Naziv plana treninga mora imati najmanje 3 znaka!");
             return;
         }
 
-        if (!podaci.get('smjer') || podaci.get('smjer') === "") {
-            alert("Morate odabrati smjer!");
+        if (!podaci.get('korisnik') || podaci.get('korisnik') === "") {
+            alert("Morate odabrati korisnika!");
             return;
         }
 
@@ -94,7 +94,7 @@ export default function PlanoviTreningaNovi() {
                                             <option value="">Odaberite korisnika</option>
                                             {korisnici && korisnici.map((korisnik) => (
                                                 <option key={korisnik.sifra} value={korisnik.sifra}>
-                                                    {korisnik.naziv}
+                                                    {korisnik.ime + ' ' + korisnik.prezime}
                                                 </option>
                                             ))}
                                         </Form.Select>
