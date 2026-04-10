@@ -1,3 +1,7 @@
+import PlanoviTreningaServiceLocalStorage from "./PlanoviTreningaLocalStorage"
+import PlanoviTreningaServiceMemorija from "./PlanoviTreningaMemorija";
+import { DATA_SOURCE } from "../../constants";
+
 let Servis = null;
 
 switch (DATA_SOURCE) {

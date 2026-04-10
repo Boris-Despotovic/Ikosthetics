@@ -1,4 +1,4 @@
-import 
+import { planovitreninga } from "./PlanoviTreningaPodaci"
 
 async function get(){
     return {success: true, data: [...planovitreninga]} 

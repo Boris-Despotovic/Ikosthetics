@@ -4,14 +4,21 @@ import { Container } from 'react-bootstrap'
 import Izbornik from './components/Izbornik'
 import { Route, Routes } from 'react-router-dom'
 import { IME_APLIKACIJE, RouteNames } from './constants'
+
 import KorisnikPregled from './pages/korisnici/KorisnikPregled'
 import KorisnikNovi from './pages/korisnici/KorisnikNovi'
 import KorisnikPromjena from './pages/korisnici/KorisniciPromjena'
+
 import Home from './pages/Home'
 import SocialBar from './components/Socials'
+
 import VjezbePregled from './pages/vjezbe/VjezbePregled'
 import VjezbeNovi from './pages/vjezbe/VjezbeNovi'
 import VjezbePromjena from './pages/vjezbe/VjezbePromjena'
+
+import PlanoviTreningaNovi from './pages/planovi treninga/PlanoviTreningaNovi'
+import PlanoviTreningaPromjena from './pages/planovi treninga/PlanoviTreningaPromjena'
+import PlanoviTreningaPregled from './pages/planovi treninga/PlanoviTreningaPregled'
 
 function App() {
 
@@ -30,7 +37,7 @@ function App() {
         <Route path={RouteNames.VJEZBE_NOVI} element={<VjezbeNovi />} />
         <Route path={RouteNames.VJEZBE_PROMJENA} element={<VjezbePromjena />} />
 
-        <Route path={RouteNames.PLANOVI_TRENINGA} element={<PlanoviTreninga />} />
+        <Route path={RouteNames.PLANOVI_TRENINGA} element={<PlanoviTreningaPregled />} />
           <Route path={RouteNames.PLANOVI_TRENINGA_NOVI} element={<PlanoviTreningaNovi />} />
           <Route path={RouteNames.PLANOVI_TRENINGA_PROMJENA} element={<PlanoviTreningaPromjena />} />
 
