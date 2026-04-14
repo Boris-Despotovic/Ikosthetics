@@ -2,10 +2,11 @@ import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import PlanoviTreningaService from "../../services/planovitreninga/PlanoviTreningaService"
 import KorisnikService from "../../services/korisnici/KorisnikService"
-import { Button, Card, Col, Container, Form, Row } from "react-bootstrap"
+import { Button, Card, Col, Container, Form, Row, Table } from "react-bootstrap"
 import { RouteNames } from "../../constants"
+import VjezbeService from "../../services/Vjezbe/VjezbeService"
 
-export default function PlanoviTreningaPromjena(){
+export default function PlanoviTreningaPromjena() {
 
     const navigate = useNavigate()
     const params = useParams()
@@ -13,27 +14,27 @@ export default function PlanoviTreningaPromjena(){
     const [korisnici, setKorisnici] = useState([])
     const [vjezbe, setVjezbe] = useState([])
     const [odabraneVjezbe, setOdabraneVjezbe] = useState([])
-    const [pretragaVjezbi, setPretragaVjezba] = useState('')
+    const [pretragaVjezbi, setPretragaVjezbi] = useState('')
     const [prikaziAutocomplete, setPrikaziAutocomplete] = useState(false)
     const [odabraniIndex, setOdabraniIndex] = useState(-1)
 
 
-    useEffect(()=>{
-        ucitajPlanoveTreninga()
+    useEffect(() => {
+        ucitajPlanTreninga()
         ucitajKorisnike()
-        UcitajVjezbe()
-    },[])
+        ucitajVjezbe()
+    }, [])
 
     useEffect(() => {
-        if (grupa.vjezbei && vjezbe.length > 0) {
-            const odabrane = vjezbe.filter(p => planovitreninga.vjezbe.includes(p.sifra))
-            setOdabraneVjezbe(odabrane)
+        if (planTreninga.vjezbe && vjezbe.length > 0) {
+            const odabrani = vjezbe.filter(p => planTreninga.vjezbe.includes(p.sifra))
+            setOdabraneVjezbe(odabrani)
         }
-    }, [planovitreninga, vjezbe])
+    }, [planTreninga, vjezbe])
 
-    async function ucitajPlanoveTreninga() {
-        await PlanoviTreningaService.getBySifra(params.sifra).then((odgovor)=>{
-            if(!odgovor.success){
+    async function ucitajPlanTreninga() {
+        await PlanoviTreningaService.getBySifra(params.sifra).then((odgovor) => {
+            if (!odgovor.success) {
                 alert('Nije implementiran servis')
                 return
             }
@@ -51,11 +52,21 @@ export default function PlanoviTreningaPromjena(){
         })
     }
 
-        function dodajVjezbe(vjezba) {
+    async function ucitajVjezbe() {
+        await VjezbeService.get().then((odgovor) => {
+            if (!odgovor.success) {
+                alert('Nije implementiran servis')
+                return
+            }
+            setVjezbe(odgovor.data)
+        })
+    }
+
+    function dodajVjezbe(vjezba) {
         if (!odabraneVjezbe.find(p => p.sifra === vjezba.sifra)) {
             setOdabraneVjezbe([...odabraneVjezbe, vjezbe])
         }
-        setPretragaVjezba('')
+        setPretragaVjezbi('')
         setPrikaziAutocomplete(false)
         setOdabraniIndex(-1)
     }
@@ -66,16 +77,16 @@ export default function PlanoviTreningaPromjena(){
 
     function filtrirajVjezbe() {
         if (!pretragaVjezbi) return []
-        return vjezbe.filter(p => 
+        return vjezbe.filter(p =>
             !odabraneVjezbe.find(op => op.sifra === p.sifra) &&
             (p.ime.toLowerCase().includes(pretragaVjezbi.toLowerCase()) ||
-             p.opis.toLowerCase().includes(pretragaVjezbi.toLowerCase()))
+                p.opis.toLowerCase().includes(pretragaVjezbi.toLowerCase()))
         )
     }
 
     function handleKeyDown(e) {
         const filtriraneVjezbe = filtrirajVjezbe()
-        
+
         if (e.key === 'ArrowDown') {
             e.preventDefault()
             setOdabraniIndex(prev => {
@@ -89,12 +100,12 @@ export default function PlanoviTreningaPromjena(){
         } else if (e.key === 'ArrowUp') {
             e.preventDefault()
             setOdabraniIndex(prev => {
-                if(prev===0){
-                    return filtriraneVjezbe.length-1
+                if (prev === 0) {
+                    return filtriraneVjezbe.length - 1
                 }
                 return prev > 0 ? prev - 1 : 0
             })
-        }  else if (e.key === 'Enter' && odabraniIndex >= 0 && filtriraneVjezbe.length > 0) {
+        } else if (e.key === 'Enter' && odabraniIndex >= 0 && filtriraneVjezbe.length > 0) {
             e.preventDefault()
             dodajVjezbe(filtriraneVjezbe[odabraniIndex])
         } else if (e.key === 'Escape') {
@@ -104,12 +115,12 @@ export default function PlanoviTreningaPromjena(){
     }
 
     async function promjeni(plantreninga) {
-        await PlanoviTreningaService.promjeni(params.sifra,plantreninga).then(()=>{
+        await PlanoviTreningaService.promjeni(params.sifra, plantreninga).then(() => {
             navigate(RouteNames.PLANOVI_TRENINGA)
         })
     }
 
-    function odradiSubmit(e){
+    function odradiSubmit(e) {
         e.preventDefault()
         const podaci = new FormData(e.target)
 
@@ -141,8 +152,8 @@ export default function PlanoviTreningaPromjena(){
         })
     }
 
-    return(
-         <>
+    return (
+        <>
             <h3>Promjena plana treninga</h3>
             <Form onSubmit={odradiSubmit}>
                 <Container onSubmit={odradiSubmit}>
@@ -161,13 +172,14 @@ export default function PlanoviTreningaPromjena(){
                                             name="naziv plana treninga"
                                             placeholder="Unesite naziv plana treninga"
                                             required
+                                            defaultValue={planTreninga.naziv}
                                         />
                                     </Form.Group>
 
                                     {/* Korisnik */}
                                     <Form.Group controlId="korisnik" className="mb-3">
                                         <Form.Label className="fw-bold">Korisnik</Form.Label>
-                                        <Form.Select name="korisnik" required>
+                                        <Form.Select name="korisnik" required value={planTreninga.korisnik || ''} onChange={(e) => setPlanTreninga({...planTreninga, korisnik: parseInt(e.target.value)})}>
                                             <option value="">Odaberite korisnika</option>
                                             {korisnici && korisnici.map((korisnik) => (
                                                 <option key={korisnik.sifra} value={korisnik.sifra}>
@@ -192,13 +204,13 @@ export default function PlanoviTreningaPromjena(){
                                         <Form.Control
                                             type="text"
                                             placeholder="Pretraži vježbu..."
-                                            value={pretragaVjezbe}
+                                            value={pretragaVjezbi}
                                             onChange={(e) => {
-                                                setPretragaVjezbe(e.target.value)
+                                                setPretragaVjezbi(e.target.value)
                                                 setPrikaziAutocomplete(e.target.value.length > 0)
                                                 setOdabraniIndex(-1)
                                             }}
-                                            onFocus={() => setPrikaziAutocomplete(pretragaVjezbe.length > 0)}
+                                            onFocus={() => setPrikaziAutocomplete(pretragaVjezbi.length > 0)}
                                             onKeyDown={handleKeyDown}
                                         />
                                         {prikaziAutocomplete && filtrirajVjezbe().length > 0 && (
@@ -217,7 +229,7 @@ export default function PlanoviTreningaPromjena(){
                                                             setOdabraniIndex(index)
                                                         }}
                                                     >
-                                                        {vjezba.ime} 
+                                                        {vjezba.ime}
                                                         {vjezba.opis}
                                                     </div>
                                                 ))}
@@ -265,17 +277,17 @@ export default function PlanoviTreningaPromjena(){
 
                     <hr className="my-4" />
 
-                            {/* Gumbi za akciju */}
-                            <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                                <Link to={RouteNames.PLANOVITRENINGA} className="btn btn-danger px-4">
-                                    Odustani
-                                </Link>
-                                <Button type="submit" variant="success">
-                                    Promjeni plan treninga
-                                </Button>
-                            </div>
-                        </Container>
-                    </Form>
-                </>
+                    {/* Gumbi za akciju */}
+                    <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <Link to={RouteNames.PLANOVI_TRENINGA} className="btn btn-danger px-4">
+                            Odustani
+                        </Link>
+                        <Button type="submit" variant="success">
+                            Promjeni plan treninga
+                        </Button>
+                    </div>
+                </Container>
+            </Form>
+        </>
     )
 }

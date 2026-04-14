@@ -127,7 +127,8 @@ export default function PlanoviTreningaNovi() {
 
         dodaj({
             naziv: podaci.get('naziv plana treninga'),
-            korisnik: odabraniKorisnik
+            korisnik: odabraniKorisnik,
+            vjezbe: odabraneVjezbe.map(p=>p.sifra)
         })
     }
 
@@ -257,7 +258,7 @@ export default function PlanoviTreningaNovi() {
 
                             {/* Gumbi za akciju */}
                             <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                                <Link to={RouteNames.PLANOVITRENINGA} className="btn btn-danger px-4">
+                                <Link to={RouteNames.PLANOVI_TRENINGA} className="btn btn-danger px-4">
                                     Odustani
                                 </Link>
                                 <Button type="submit" variant="success">
