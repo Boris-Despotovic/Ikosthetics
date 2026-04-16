@@ -19,6 +19,7 @@ import VjezbePromjena from './pages/vjezbe/VjezbePromjena'
 import PlanoviTreningaNovi from './pages/planovitreninga/PlanoviTreningaNovi'
 import PlanoviTreningaPromjena from './pages/planovitreninga/PlanoviTreningaPromjena'
 import PlanoviTreningaPregled from './pages/planovitreninga/PlanoviTreningaPregled'
+import GeneriranjePodataka from './pages/GeneriranjePodatak'
 
 function App() {
 
@@ -38,8 +39,11 @@ function App() {
         <Route path={RouteNames.VJEZBE_PROMJENA} element={<VjezbePromjena />} />
 
         <Route path={RouteNames.PLANOVI_TRENINGA} element={<PlanoviTreningaPregled />} />
-          <Route path={RouteNames.PLANOVI_TRENINGA_NOVI} element={<PlanoviTreningaNovi />} />
-          <Route path={RouteNames.PLANOVI_TRENINGA_PROMJENA} element={<PlanoviTreningaPromjena />} />
+        <Route path={RouteNames.PLANOVI_TRENINGA_NOVI} element={<PlanoviTreningaNovi />} />
+        <Route path={RouteNames.PLANOVI_TRENINGA_PROMJENA} element={<PlanoviTreningaPromjena />} />
+
+        <Route path={RouteNames.GENERIRANJE_PODATAKA} element={<GeneriranjePodataka />} />
+
 
       </Routes>
       <>

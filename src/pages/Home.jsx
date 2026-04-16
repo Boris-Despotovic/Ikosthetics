@@ -4,6 +4,7 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import KorisnikService from "../services/korisnici/KorisnikService";
 import VjezbeService from "../services/Vjezbe/VjezbeService";
 import PlanoviTreningaService from "../services/planovitreninga/PlanoviTreningaService";
+import { Card, Col, Row } from "react-bootstrap";
 
 export default function Home(){
     const [brojKorisnika, setBrojKorisnika] = useState(0);
@@ -71,6 +72,48 @@ export default function Home(){
         <div>
             “No man has the right to be an amateur in the matter of physical training. It is a shame for a man to grow old without seeing the beauty and strength of which his body is capable.”
 ― Socrates
+        <Row>
+            <Col md={6}>
+            <div style={{ textAlign: 'center' }}></div>
+            <div style={{maxWidth: '500px', margin: 'auto'}}>
+                <DotLottieReact
+                    src="/AISpark_InteractiveAssistant.lottie"
+                    loop
+                    autoplay
+                />
+            </div>
+            </Col>
+            <Col className="d-flex align-items-center justify-content-center">
+                <div style={{ width: '100%', maxWidth: '400px' }}>
+                    <Card className="mb-3 shadow-lg border-0 statistikaPanel">
+                        <Card.Body className="text-center">
+                            <p className="text-white">Korisnici</p>
+                            <div className="statistikaTekst">
+                                {animatedKorisnici}
+                            </div>
+                        </Card.Body>
+                    </Card>
+
+                    <Card className="mb-3 shadow-lg border-0 statistikaPanel">
+                        <Card.Body className="text-center">
+                            <p className="text-white">Vježbe</p>
+                            <div className="statistikaTekst">
+                                {animatedVjezbe}
+                            </div>
+                        </Card.Body>
+                    </Card>
+
+                    <Card className="shadow-lg border-0 statistikaPanel">
+                        <Card.Body className="text-center">
+                            <p className="text-white">Planovi treninga</p>
+                            <div className="statistikaTekst">
+                                {animatedPlanovitreninga}
+                            </div>
+                        </Card.Body>
+                    </Card>
+                </div>
+            </Col>
+        </Row>
     
     <DotLottieReact
       src="/Weightliftingcompetition.lottie"

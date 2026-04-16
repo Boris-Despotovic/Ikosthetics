@@ -224,7 +224,7 @@ export default function PlanoviTreningaPromjena() {
                                                             backgroundColor: index === odabraniIndex ? '#007bff' : 'white',
                                                             color: index === odabraniIndex ? 'white' : 'black'
                                                         }}
-                                                        onClick={() => dodajVjezbu(vjezba)}
+                                                        onClick={() => dodajVjezbe(vjezba)}
                                                         onMouseEnter={(e) => {
                                                             setOdabraniIndex(index)
                                                         }}

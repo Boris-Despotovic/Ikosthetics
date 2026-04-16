@@ -12,7 +12,9 @@ export const RouteNames = {
 
     PLANOVI_TRENINGA: '/planovi-treninga',
     PLANOVI_TRENINGA_NOVI: '/planovi-treninga/novi',
-    PLANOVI_TRENINGA_PROMJENA: '/planovi-treninga/:sifra'
+    PLANOVI_TRENINGA_PROMJENA: '/planovi-treninga/:sifra',
+
+    GENERIRANJE_PODATAKA: '/generiraj-podatke'
 }
 
 // memorija, localStorage, firebase
