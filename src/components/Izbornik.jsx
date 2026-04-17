@@ -28,6 +28,10 @@ export default function Izbornik() {
                             <NavDropdown.Item
                             onClick={()=>navigate(RouteNames.PLANOVI_TRENINGA)}
                             >Planovi treninga</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item
+                            onClick={()=>navigate(RouteNames.GENERIRANJE_PODATAKA)}
+                            >Genriranje podataka</NavDropdown.Item>
                             
                         </NavDropdown>
                     </Nav>

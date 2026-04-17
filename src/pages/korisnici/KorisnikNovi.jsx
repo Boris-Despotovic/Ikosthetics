@@ -19,9 +19,7 @@ const navigate = useNavigate()
         const podaci = new FormData(e.target)
         dodaj({
             ime: podaci.get('ime'),
-            prezime: podaci.get('prezime'),
-            trajanje: parseInt(podaci.get('trajanje')),
-            nazivPlanaTreninga: podaci.get('nazivPlanaTreninga')
+            prezime: podaci.get('prezime')
         })
     }
 
@@ -37,16 +35,6 @@ const navigate = useNavigate()
                 <Form.Group controlId="prezime">
                     <Form.Label>Prezime</Form.Label>
                     <Form.Control type="text" name="prezime" required />
-                </Form.Group>
-
-                <Form.Group controlId="nazivPlanaTreninga">
-                    <Form.Label>Naziv plana treninga</Form.Label>
-                    <Form.Control type="text" name="nazivPlanaTreninga" />
-                </Form.Group>
-
-                <Form.Group controlId="trajanje">
-                    <Form.Label>Trajanje</Form.Label>
-                    <Form.Control type="number" name="trajanje" step={0.01} />
                 </Form.Group>
 
                 <Row className="mt-4">

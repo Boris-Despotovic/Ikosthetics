@@ -63,9 +63,11 @@ export default function PlanoviTreningaPromjena() {
     }
 
     function dodajVjezbe(vjezba) {
+       
         if (!odabraneVjezbe.find(p => p.sifra === vjezba.sifra)) {
-            setOdabraneVjezbe([...odabraneVjezbe, vjezbe])
+            setOdabraneVjezbe([...odabraneVjezbe, vjezba])
         }
+
         setPretragaVjezbi('')
         setPrikaziAutocomplete(false)
         setOdabraniIndex(-1)
@@ -169,7 +171,7 @@ export default function PlanoviTreningaPromjena() {
                                         <Form.Label className="fw-bold">Naziv plana treninga</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            name="naziv plana treninga"
+                                            name="naziv"
                                             placeholder="Unesite naziv plana treninga"
                                             required
                                             defaultValue={planTreninga.naziv}
@@ -248,9 +250,12 @@ export default function PlanoviTreningaPromjena() {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    
                                                     {odabraneVjezbe.map(vjezba => (
                                                         <tr key={vjezba.sifra}>
-                                                            <td>{vjezba.ime} {vjezba.opis}</td>
+
+                                                            <td>
+                                                                {vjezba.ime} {vjezba.opis}</td>
                                                             <td>
                                                                 <Button
                                                                     variant="danger"

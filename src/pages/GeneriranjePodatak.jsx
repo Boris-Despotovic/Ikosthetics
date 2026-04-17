@@ -18,19 +18,12 @@ export default function GeneriranjePodataka() {
     });
 
     const generirajKorisnike = async (broj) => {
-        const naziviKorisnika = [
-            'David Pokarajac',
-            'Dario Despotović',
-            'Fabijan Turić',
-            'Sebastijan Fariš'
-        ];
+
 
         for (let i = 0; i < broj; i++) {
             await KorisnikService.dodaj({
-                naziv: naziviKorisnika[i % naziviKorisnika.length] + (i >= naziviKorisnika.length ? ` ${Math.floor(i / naziviKorisnika.length) + 1}` : ''),
-                trajanje: faker.number.int({ min: 130, max: 350 }),
-                cijena: faker.number.float({ min: 1100, max: 5000, precision: 0.01 }).toFixed(2),
-                aktivan: faker.datatype.boolean()
+                ime: faker.person.firstName(),
+                prezime: faker.person.lastName()
             });
         }
     };
@@ -38,8 +31,8 @@ export default function GeneriranjePodataka() {
     const generirajVjezbe = async (broj) => {
         for (let i = 0; i < broj; i++) {
             const vjezba = {
-                ime: faker.person.firstName,
-                opis: faker.person.opisVjezbe(),                
+                ime: 'Vježba ' + faker.person.firstName(),
+                opis: faker.person.lastName() + ' prvi izveo',                
             };
             await VjezbeService.dodaj(vjezba);
         }
@@ -55,14 +48,25 @@ export default function GeneriranjePodataka() {
         if (korisnici.length === 0) {
             throw new Error('Nema dostupnih korisnika. Prvo generirajte korisnike.');
         }
+
+        const rezultatVjezbe = await VjezbeService.get();
+        const vjezbe = rezultatVjezbe.data;
+
+        
+        if (vjezbe.length === 0) {
+            throw new Error('Nema dostupnih vježbi. Prvo generirajte vježbe.');
+        }
         
         for (let i = 0; i < broj; i++) {
             // Odaberi nasumični korisnik
-            const randomKorisnik = korisnici[faker.number.int({ min: 0, max: smjerovi.length - 1 })];
-  
+            const randomKorisnik = korisnici[faker.number.int({ min: 0, max: korisnici.length - 1 })];
+            const randomVjezba = vjezbe[faker.number.int({ min: 0, max: vjezbe.length - 1 })];
+            
+
             const planoviTreninga = {
-                ime: randomKorisnik.naziv.trim().split(/\s+/).slice(0, 2).map(rijec => rijec[0]).join('').toUpperCase(),   
-                korisnik: randomKorisnik.sifra
+                naziv: (randomKorisnik.ime + ' ' + randomKorisnik.prezime).trim().split(/\s+/).slice(0, 2).map(rijec => rijec[0]).join('').toUpperCase() + ' plan treninga',   
+                korisnik: randomKorisnik.sifra,
+                vjezbe: [randomVjezba.sifra]
             };
             
             await PlanoviTreningaService.dodaj(planoviTreninga);
@@ -126,13 +130,13 @@ export default function GeneriranjePodataka() {
             const rezultat = await VjezbeService.get();
             const vjezbe = rezultat.data;
             
-            for (const vjezbe of vjezbe) {
-                await VjezbeService.obrisi(vjezbe.sifra);
+            for (const vjezba of vjezbe) {
+                await VjezbeService.obrisi(vjezba.sifra);
             }
 
             setPoruka({
                 tip: 'success',
-                tekst: `Uspješno obrisano ${polaznici.length} vježba!`
+                tekst: `Uspješno obrisano ${vjezbe.length} vježba!`
             });
         } catch (error) {
             setPoruka({
@@ -156,7 +160,7 @@ export default function GeneriranjePodataka() {
             const rezultat = await KorisnikService.get();
             const korisnici = rezultat.data;
             
-            for (const korisnik of korisnik) {
+            for (const korisnik of korisnici) {
                 await KorisnikService.obrisi(korisnik.sifra);
             }
 
@@ -180,7 +184,7 @@ export default function GeneriranjePodataka() {
         setPoruka(null);
 
         try {
-            await generirajPlanoveTreninga(brojPlanoveTreninga);
+            await generirajPlanoveTreninga(brojPlanovaTreninga);
 
             setPoruka({
                 tip: 'success',
@@ -248,7 +252,7 @@ export default function GeneriranjePodataka() {
                                 type="number"
                                 min="1"
                                 max="50"
-                                value={brojkorisnika}
+                                value={brojKorisnika}
                                 onChange={(e) => setBrojKorisnika(parseInt(e.target.value))}
                                 disabled={loading}
                             />

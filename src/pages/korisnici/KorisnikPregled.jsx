@@ -44,8 +44,6 @@ export default function KorisniciPregled() {
                     <tr>
                         <th>Ime</th>
                         <th>Prezime</th>
-                        <th>Naziv plana treninga</th>
-                        <th>Trajanje</th>
                         <th>Akcija</th>
                     </tr>
                 </thead>
@@ -54,8 +52,6 @@ export default function KorisniciPregled() {
                         <tr key={korisnik.sifra}>
                             <td>{korisnik.ime}</td>
                             <td>{korisnik.prezime} </td>
-                            <td>{korisnik.nazivPlanaTreninga} </td>
-                            <td className='text-end'>{korisnik.trajanje} </td>
                             <td>
                                 <Button onClick={()=>{navigate(`/korisnici/${korisnik.sifra}`)}}>
                                 Promjeni

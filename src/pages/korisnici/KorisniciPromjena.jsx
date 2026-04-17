@@ -38,9 +38,7 @@ export default function KorisnikPromjena(){
         const podaci = new FormData(e.target)
         promjeni({
             ime: podaci.get('ime'),
-            prezime: podaci.get('prezime'),
-            nazivPlanaTreninga: podaci.get('nazivPlanaTreninga'),
-            trajanje: parseInt(podaci.get('trajanje'))
+            prezime: podaci.get('prezime')
         })
     }
 
@@ -59,19 +57,6 @@ export default function KorisnikPromjena(){
                     <Form.Control type="text" name="prezime" required 
                     defaultValue={korisnik.prezime}/>
                 </Form.Group>
-
-                <Form.Group controlId="nazivPlanaTreninga">
-                    <Form.Label>Naziv plana treninga</Form.Label>
-                    <Form.Control type="text" name="nazivPlanaTreninga" required 
-                    defaultValue={korisnik.nazivPlanaTreninga}/>
-                </Form.Group>
-
-                <Form.Group controlId="trajanje">
-                    <Form.Label>Trajanje</Form.Label>
-                    <Form.Control type="number" name="trajanje" step={1} 
-                    defaultValue={korisnik.trajanje}/>
-                </Form.Group>
-
 
                 <Row className="mt-4">
                     <Col>
