@@ -1,36 +1,36 @@
 import { planovitreninga } from "./PlanoviTreningaPodaci"
 
 async function get(){
-    return {success: true, data: [...planovitreninga]} 
+    return {success: true, data: [...realizacijatreninga]} 
 }
 
 async function getBySifra(sifra) {
-    return {success: true, data: planovitreninga.find(g => g.sifra === parseInt(sifra))}
+    return {success: true, data: realizacijatreninga.find(g => g.sifra === parseInt(sifra))}
 }
 
-async function dodaj(plantreninga){
-    if(planovitreninga.length===0){
-        plantreninga.sifra=1
+async function dodaj(realizacijatreninga){
+    if(realizacijetreninga.length===0){
+        realizacijatreninga.sifra=1
     }else{
-        plantreninga.sifra = planovitreninga[planovitreninga.length - 1].sifra + 1
+        realizacijatreninga.sifra = realizacijetreninga[realizacijetreninga.length - 1].sifra + 1
     }
     
-    planovitreninga.push(plantreninga)
+    realizacijetreninga.push(realizacijatreninga)
 }
 
-async function promjeni(sifra,plantreninga) {
+async function promjeni(sifra,realizacijatreninga) {
     const index = nadiIndex(sifra)
-    planovitreninga[index] = {...planovitreninga[index], ...plantreninga}
+    realizacijetreninga[index] = {...realizacijetreninga[index], ...realizacijatreninga}
 }
 
 function nadiIndex(sifra){
-    return planovitreninga.findIndex(g=>g.sifra === parseInt(sifra))
+    return realizacijetreninga.findIndex(g=>g.sifra === parseInt(sifra))
 }
 
 async function obrisi(sifra) {
     const index = nadiIndex(sifra);
     if (index > -1) {
-        planovitreninga.splice(index, 1);
+        realizacijetreninga.splice(index, 1);
     }
     return;
 }

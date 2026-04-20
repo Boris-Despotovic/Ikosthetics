@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'planovitreninga';
+const STORAGE_KEY = 'realizacijetreninga';
 
 function dohvatiSveIzStorage() {
     const podaci = localStorage.getItem(STORAGE_KEY);
@@ -10,46 +10,46 @@ function spremiUStorage(podaci) {
 }
 
 async function get() {
-    const planovitreninga = dohvatiSveIzStorage();
-    return {success: true,  data: [...planovitreninga] };
+    const realizacijetreninga = dohvatiSveIzStorage();
+    return {success: true,  data: [...realizacijetreninga] };
 }
 
 async function getBySifra(sifra) {
-    const planovitreninga = dohvatiSveIzStorage();
-    const plantreninga = planovitreninga.find(g => g.sifra === parseInt(sifra));
-    return {success: true,  data: plantreninga };
+    const realizacijetreninga = dohvatiSveIzStorage();
+    const realizacijatreninga = realizacijetreninga.find(g => g.sifra === parseInt(sifra));
+    return {success: true,  data: realizacijatreninga };
 }
 
-async function dodaj(plantreninga) {
-    const planovitreninga = dohvatiSveIzStorage();
+async function dodaj(realizacijatreninga) {
+    const realizacijetreninga = dohvatiSveIzStorage();
     
-    if (planovitreninga.length === 0) {
-        plantreninga.sifra = 1;
+    if (realizacijetreninga.length === 0) {
+        realizacijatreninga.sifra = 1;
     } else {
-        const maxSifra = Math.max(...planovitreninga.map(g => g.sifra));
-        plantreninga.sifra = maxSifra + 1;
+        const maxSifra = Math.max(...realizacijetreninga.map(g => g.sifra));
+        realizacijatreninga.sifra = maxSifra + 1;
     }
     
-    planovitreninga.push(plantreninga);
-    spremiUStorage(planovitreninga);
-    return { data: plantreninga };
+    realizacijetreninga.push(realizacijatreninga);
+    spremiUStorage(realizacijetreninga);
+    return { data: realizacijatreninga };
 }
 
-async function promjeni(sifra, plantreninga) {
-    const planovitreninga = dohvatiSveIzStorage();
-    const index = planovitreninga.findIndex(g => g.sifra === parseInt(sifra));
+async function promjeni(sifra, realizacijatreninga) {
+    const realizacijetreninga = dohvatiSveIzStorage();
+    const index = realizacijetreninga.findIndex(g => g.sifra === parseInt(sifra));
     
     if (index !== -1) {
-        planovitreninga[index] = { ...planovitreninga[index], ...plantreninga, sifra: parseInt(sifra) };
-        spremiUStorage(planovitreninga);
+        realizacijetreninga[index] = { ...realizacijetreninga[index], ...realizacijatreninga, sifra: parseInt(sifra) };
+        spremiUStorage(realizacijetreninga);
     }
-    return { data: planovitreninga[index] };
+    return { data: realizacijetreninga[index] };
 }
 
 async function obrisi(sifra) {
-    let planovitreninga = dohvatiSveIzStorage();
-    planovitreninga = planovitreninga.filter(g => g.sifra !== parseInt(sifra));
-    spremiUStorage(planovitreninga);
+    let realizacijetreninga = dohvatiSveIzStorage();
+    realizacijetreninga = realizacijetreninga.filter(g => g.sifra !== parseInt(sifra));
+    spremiUStorage(realizacijetreninga);
     return { message: 'Obrisano' };
 }
 

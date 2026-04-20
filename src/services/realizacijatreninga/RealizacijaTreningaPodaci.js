@@ -12,7 +12,7 @@ export const planovitreninga = [
         planTreninga: 1,
         datum: '2026-05-20T00:00:00',
         vjezbe: [2],
-        napomenaTreneru: 'Dobro radi',
+        napomenaTreneru: 'Loše radi',
         napomenaKorisniku: 'Molim te više motivacije sljedeći puta'
     }
 ]

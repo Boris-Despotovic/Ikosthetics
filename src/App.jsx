@@ -42,6 +42,10 @@ function App() {
         <Route path={RouteNames.PLANOVI_TRENINGA_NOVI} element={<PlanoviTreningaNovi />} />
         <Route path={RouteNames.PLANOVI_TRENINGA_PROMJENA} element={<PlanoviTreningaPromjena />} />
 
+        <Route path={RouteNames.REALIZACIJA_TRENINGA} element={<RealizacijaTreningaPregled />} />
+        <Route path={RouteNames.REALIZACIJA_TRENINGA_NOVI} element={<RealizacijaTreningaNovi />} />
+        <Route path={RouteNames.REALIZACIJA_TRENINGA_PROMJENA} element={<RealizacijaTreningaPromjena />} />
+
         <Route path={RouteNames.GENERIRANJE_PODATAKA} element={<GeneriranjePodataka />} />
 
 

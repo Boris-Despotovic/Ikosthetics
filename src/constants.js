@@ -14,6 +14,10 @@ export const RouteNames = {
     PLANOVI_TRENINGA_NOVI: '/planovi-treninga/novi',
     PLANOVI_TRENINGA_PROMJENA: '/planovi-treninga/:sifra',
 
+    REALIZACIJA_TRENINGA: '/realizacija-treninga',
+    REALIZACIJA_TRENINGA_NOVI: '/realizacija-treninga/novi',
+    REALIZACIJA_TRENINGA_PROMJENA: '/realizacija-treninga/:sifra',
+
     GENERIRANJE_PODATAKA: '/generiraj-podatke'
 }
 
