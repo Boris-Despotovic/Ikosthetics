@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { Button, Card, Col, Container, Form, Row, Table } from "react-bootstrap"
 import { RouteNames } from "../../constants"
 
-export default function PlanoviTreningaPromjena() {
+export default function RealizacijaTreningaPromjena() {
 
     const navigate = useNavigate()
     const params = useParams()

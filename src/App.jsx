@@ -20,6 +20,9 @@ import PlanoviTreningaNovi from './pages/planovitreninga/PlanoviTreningaNovi'
 import PlanoviTreningaPromjena from './pages/planovitreninga/PlanoviTreningaPromjena'
 import PlanoviTreningaPregled from './pages/planovitreninga/PlanoviTreningaPregled'
 import GeneriranjePodataka from './pages/GeneriranjePodatak'
+import RealizacijaTreningaPregled from './pages/realizacijatreninga/RealizacijaTreningaPregled'
+import RealizacijaTreningaNovi from './pages/realizacijatreninga/RealizacijaTreningaNovi'
+import RealizacijaTreningaPromjena from './pages/realizacijatreninga/RealizacijaTreningaPromjena'
 
 function App() {
 

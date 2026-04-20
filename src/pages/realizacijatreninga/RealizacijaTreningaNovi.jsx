@@ -3,7 +3,7 @@ import { Button, Card, Col, Container, Form, Row, Table } from "react-bootstrap"
 import { RouteNames } from "../../constants"
 import { Link, useNavigate } from "react-router-dom"
 
-export default function PlanoviTreningaNovi() {
+export default function RealizacijaTreningaNovi() {
 
     const navigate = useNavigate()
     const [korisnici, setKorisnici] = useState([])

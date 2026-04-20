@@ -1,4 +1,4 @@
-export const planovitreninga = [
+export const realizacijatreninga = [
     {
         sifra: 1,
         planTreninga: 1,
