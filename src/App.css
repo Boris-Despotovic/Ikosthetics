@@ -1,31 +1,18 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #0f172a;
+  background-color: #172546;
   color: #0f172a;
 }
 
 h1, h2, h3 {
-  color: #ef4444;
+  color: #172546;
 }
 
 a {
   color: white;
   text-decoration: none;
   margin-right: 15px;
-}
-
-a:hover {
-  color: #ef4444;
-}
-
-button {
-  background-color: #ef4444;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
-  cursor: pointer;
 }
 
 .socials {
