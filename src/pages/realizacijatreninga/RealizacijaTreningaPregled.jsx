@@ -9,7 +9,7 @@ export default function RealizacijaTreningaPregled(){
 
     const navigate = useNavigate()
 
-    const [realizacijetreninga, setRealizacijatreninga] = useState([])
+    const [realizacijetreninga, setRealizacijetreninga] = useState([])
     const [korisnici, setKorisnici] = useState([])
 
     useEffect(()=>{
