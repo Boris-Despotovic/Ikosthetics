@@ -40,7 +40,7 @@ a {
 
 .socials a:hover {
   transform: scale(1.2);
-  background: #ff3c3c;
+  background: #335299;
 }
 
 @keyframes float {
