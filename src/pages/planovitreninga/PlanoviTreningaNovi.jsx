@@ -128,6 +128,7 @@ export default function PlanoviTreningaNovi() {
         dodaj({
             naziv: podaci.get('naziv plana treninga'),
             korisnik: odabraniKorisnik,
+            cijena: parseFloat(podaci.get('cijena')),
             vjezbe: odabraneVjezbe.map(p=>p.sifra)
         })
     }
@@ -166,6 +167,16 @@ export default function PlanoviTreningaNovi() {
                                                 </option>
                                             ))}
                                         </Form.Select>
+                                    </Form.Group>
+
+                                    <Form.Group controlId="cijena" className="mb-3">
+                                        <Form.Label className="fw-bold">Cijena (€)</Form.Label>
+                                        <Form.Control
+                                            type="number"
+                                            name="cijena"
+                                            step={0.01}
+                                            placeholder="0,00"
+                                        />
                                     </Form.Group>
                                 </Card.Body>
                             </Card>

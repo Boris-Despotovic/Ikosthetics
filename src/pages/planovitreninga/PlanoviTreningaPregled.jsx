@@ -4,6 +4,7 @@ import KorisnikService from "../../services/korisnici/KorisnikService"
 import { Button, Table } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import { RouteNames } from "../../constants"
+import { NumericFormat } from "react-number-format"
 
 export default function PlanoviTreningaPregled(){
 
@@ -70,6 +71,7 @@ export default function PlanoviTreningaPregled(){
                 <tr>
                     <th>Naziv plana treninga</th>
                     <th>Korisnik</th>
+                    <th>Cijena</th>
                     <th>Akcija</th>
                 </tr>
             </thead>
@@ -78,6 +80,17 @@ export default function PlanoviTreningaPregled(){
                     <tr key={plantreninga.sifra}>
                         <td className="lead">{plantreninga.naziv}</td>
                         <td>{dohvatiNazivKorisnika(plantreninga.korisnik)}</td>
+                        <td>
+                            <NumericFormat
+                                            value={plantreninga.cijena}
+                                            displayType={'text'}
+                                            thousandSeparator='.'
+                                            decimalSeparator=','
+                                            suffix=' €'
+                                            decimalScale={2}
+                                            fixedDecimalScale
+                                        />
+                        </td>
                         <td>
                             <Button onClick={()=>{navigate(`/planovi-treninga/${plantreninga.sifra}`)}}>
                                 Promjeni
