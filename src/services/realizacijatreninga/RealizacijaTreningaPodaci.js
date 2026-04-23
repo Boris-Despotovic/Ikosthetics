@@ -9,7 +9,7 @@ export const realizacijatreninga = [
     },
     {
         sifra: 2,
-        planTreninga: 1,
+        planTreninga: 2,
         datum: '2026-05-20T00:00:00',
         vjezbe: [2],
         napomenaTreneru: 'Loše radi',
