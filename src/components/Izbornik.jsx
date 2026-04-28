@@ -29,14 +29,14 @@ export default function Izbornik() {
                             onClick={()=>navigate(RouteNames.PLANOVI_TRENINGA)}
                             >Planovi treninga</NavDropdown.Item>
 
-                            <NavDropdown.Item
+                            {/* <NavDropdown.Item
                             onClick={()=>navigate(RouteNames.REALIZACIJA_TRENINGA)}
-                            >Realizacija treninga</NavDropdown.Item>
+                            >Realizacija treninga</NavDropdown.Item> */}
 
                             <NavDropdown.Divider />
                             <NavDropdown.Item
                             onClick={()=>navigate(RouteNames.GENERIRANJE_PODATAKA)}
-                            >Genriranje podataka</NavDropdown.Item>
+                            >Generiranje podataka</NavDropdown.Item>
                             
                         </NavDropdown>
                     </Nav>
